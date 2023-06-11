@@ -13,16 +13,20 @@ export const getWeekByDate = (date: Date): IDay[] => {
   });
 };
 
-export const getHours = (date: Date): number[] => {
+export const getHours = (): number[] => {
+  return Array(24)
+  .fill(0)
+  .map((el: number, idx) => {
+    return idx;
+  });
+};
+
+export const getHourId = (date: Date, hour: number): number => {
   date.setMinutes(0);
   date.setSeconds(0);
   date.setMilliseconds(0);
-  date.setHours(0);
-  return Array(24)
-  .fill(new Date(date))
-  .map((el: Date, idx) => {
-    return new Date(el.getTime()).setHours(idx);
-  });
+  date.setHours(hour);
+  return date.getTime();
 };
 
 export const padTo2Digits = (num: number) => {

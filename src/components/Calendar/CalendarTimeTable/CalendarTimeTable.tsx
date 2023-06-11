@@ -3,7 +3,7 @@ import Container from "../../../ui/Container/Container";
 import styled from "styled-components";
 import { useAppSelector } from "../../../hooks/redux";
 import TableItem from "../../../ui/TableItem/TableItem";
-import { padTo2Digits } from "../../../utils/dates/dates";
+import { getHours, padTo2Digits } from "../../../utils/dates/dates";
 import Row from "../../../ui/Row/Row";
 
 const StyledSection = styled.div`
@@ -16,12 +16,12 @@ const StyledTable = styled.div`
   margin-bottom: -1px;
 `;
 
-const StyledTableRow = styled.div`
+const StyledOverflow = styled.div`
   width: 100%;
   overflow: hidden;
 `;
 
-const StyledTableRow2 = styled.div`
+const StyledTableRow = styled.div`
   display: flex;
   margin-right: -2px;
   margin-left: -2px;
@@ -31,42 +31,28 @@ const StyledTimeItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding-right: 10px;
+  color: rgb(185, 185, 185);
 `;
 
 const CalendarTimeTable: FC = () => {
-  const { week, hours } = useAppSelector((state) => state.calendarReducer);
+  const { week } = useAppSelector((state) => state.calendarReducer);
+  const hours = getHours();
 
   return (
     <StyledSection>
       <Container>
-        {/* <StyledTable>
-        <tbody>
-          {hours.map((hour) => (
-            <StyledTableRow key={hour}>
-              <StyledTimeTD>
-                {padTo2Digits(new Date(hour).getHours())}:00
-              </StyledTimeTD>
-              {week.map((day, i) => (
-                <TableItem id={hour + i} key={hour + i} />
-              ))}
-            </StyledTableRow>
-          ))}
-        </tbody>
-      </StyledTable> */}
         <StyledTable>
           {hours.map((hour) => (
             <Row key={hour}>
-              <StyledTimeItem>
-                {padTo2Digits(new Date(hour).getHours())}:00
-              </StyledTimeItem>
-              <StyledTableRow>
-                <StyledTableRow2>
+              <StyledTimeItem>{padTo2Digits(hour)}:00</StyledTimeItem>
+              <StyledOverflow>
+                <StyledTableRow>
                   {week.map((day, i) => (
-                    <TableItem id={hour + i} key={hour + i} />
+                    <TableItem day={day.day} hour={hour} key={i} />
                   ))}
-                </StyledTableRow2>
-              </StyledTableRow>
+                </StyledTableRow>
+              </StyledOverflow>
             </Row>
           ))}
         </StyledTable>

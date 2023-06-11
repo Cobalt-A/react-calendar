@@ -26,6 +26,7 @@ const CalendarHeader: FC = () => {
   const { setEvents } = calendarSlice.actions;
   const dispatch = useAppDispatch();
   const clickHandler = (): void => {
+    if (!focusEvent) return;
     dispatch(setEvents([focusEvent, ...events]));
   };
 
