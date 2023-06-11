@@ -8,7 +8,7 @@ import { calendarSlice } from "../../../store/reducers/calendar";
 import { TfiAngleRight, TfiAngleLeft } from "react-icons/tfi";
 
 const StyledContent = styled.div`
-  margin-left: 10%;
+  margin-left: 60px;
 `;
 
 const StyledDay = styled.div`
@@ -16,6 +16,7 @@ const StyledDay = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10px 0;
+  width: 100%;
 `;
 
 const StyledColumn = styled.div`
