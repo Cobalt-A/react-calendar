@@ -34,7 +34,7 @@ const CalendarHeader: FC = () => {
     <StyledHeader>
       <Container>
         <Row>
-          <StyledTitle>Interview Calendar</StyledTitle>
+          <StyledTitle>React-Calendar</StyledTitle>
           <StyledButton onClick={clickHandler}>
             <BsPlusLg size={35} color="#dc3434" />
           </StyledButton>
