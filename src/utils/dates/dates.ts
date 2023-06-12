@@ -1,12 +1,21 @@
 import { IDay } from "../../types/IDay";
 
+const getDate = (date: Date): Date => {
+  date.setMilliseconds(0);
+  date.setSeconds(0);
+  date.setMinutes(0);
+  return date;
+};
+
 export const getWeekByDate = (date: Date): IDay[] => {
+  const currentDay = getDate(new Date()).setHours(0);
   return Array(7)
-  .fill(new Date(date))
-  .map((el, idx) => {
+  .fill(getDate(new Date(date)))
+  .map((el: Date, idx) => {
     el.setHours(-24);
     const day = new Date(el.setDate(el.getDate() - el.getDay() + idx + 1));
-    if (day.getDate() === new Date().getDate()) {
+
+    if (day.getTime() === currentDay) {
       return { isCurrentDay: true, day: day.getTime() };
     }
     return { isCurrentDay: false, day: day.getTime() };
@@ -16,17 +25,14 @@ export const getWeekByDate = (date: Date): IDay[] => {
 export const getHours = (): number[] => {
   return Array(24)
   .fill(0)
-  .map((el: number, idx) => {
+  .map((el, idx) => {
     return idx;
   });
 };
 
 export const getHourId = (date: Date, hour: number): number => {
-  date.setMinutes(0);
-  date.setSeconds(0);
-  date.setMilliseconds(0);
-  date.setHours(hour);
-  return date.getTime();
+  const currentDate = getDate(date);
+  return currentDate.setHours(hour);
 };
 
 export const padTo2Digits = (num: number) => {
