@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import Layout from "./layout/Layout";
+import React, { FC, Fragment } from "react";
 import Calendar from "./pages/Calendar";
 import { createGlobalStyle } from "styled-components";
 
@@ -24,10 +23,10 @@ const GlobalStyles = createGlobalStyle`
 
 const App: FC = () => {
   return (
-    <Layout>
+    <Fragment>
       <GlobalStyles />
       <Calendar />
-    </Layout>
+    </Fragment>
   );
 };
 

@@ -25,12 +25,12 @@ const Calendar: FC = () => {
   };
 
   return (
-    <div id="calendar" onClick={clickHandler}>
+    <main id="calendar" onClick={clickHandler}>
       <CalendarHeader />
       <CalendarWeeks />
       <CalendarTimeTable />
       <CalendarBottomMenu />
-    </div>
+    </main>
   );
 };
 
